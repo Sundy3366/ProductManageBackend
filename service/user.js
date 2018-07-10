@@ -2,17 +2,24 @@ let User = require('../model/user');
 let crypto = require('lxj-crypto');
 let config = require("../config");
 
-//登录
+/**
+ * 登录
+ * @param user
+ * @returns {Promise<void>}
+ */
 async function login(user) {
+    //对用户名进行加密
     user.password = crypto.sha256Hmac(user.password, user.username);
+    //根据用户名和密码查询用户
     let res = await User.findOne({
         username: user.username,
         password: user.password
-    })
+    });
+    //如果不存在该用户，说明用户名或密码错误
     if (!res) {
         throw Error("用户名或密码错误")
     }
-
+    //如果存在就返回一个token
     let tokenData = {
         username: user.username,
         expire: Date.now() + config.TokenExpire
@@ -21,9 +28,14 @@ async function login(user) {
     return token;
 }
 
-//注册
+/**
+ * 注册
+ * @param user
+ * @returns {Promise<void>}
+ */
 async function register(user) {
-    let res = User.findOne({username: user.username});
+    //判断用户名是否存在
+    let res = await User.findOne({username: user.username});
     if (res) {
         throw Error(`用户${user.username}已存在`);
     }
@@ -35,22 +47,34 @@ async function register(user) {
     await User.create(user);
 }
 
-//获取用户信息
-async function getUserInfo(user) {
-    let res = await User.findOne({username: user.username});
+/**
+ * 根据用户名获取用户信息
+ * @param user
+ * @returns {Promise<*>}
+ */
+async function getUserInfo(username) {
+    let res = await User.findOne({username: username});
     if (!res || res.n === 0) {
-        throw Error("用户名不存在");
+        throw Error(`用户名${username}不存在`);
     }
     return res;
 }
 
-//删除用户
+/**
+ * 根据用户名删除用户
+ * @param username
+ * @returns {Promise<void>}
+ */
 async function deleteByUsername(username) {
     await isUserExists(username);
     let res = await User.deleteOne({username: username});
     if (res < 1) {
         throw Error("删除失败");
     }
+}
+
+async function deeteById(id) {
+
 }
 
 /**
@@ -65,6 +89,18 @@ async function isUserExists(username) {
     }
 }
 
+/**
+ * 根据id验证用户是否存在
+ * @param id
+ * @returns {Promise<void>}
+ */
+async function isUserExists(id) {
+    let res = await User.findOne({_id: id});
+    if (!res || res.n === 0) {
+        throw Error("id不存在");
+    }
+}
+
 module.exports = {
     register, deleteByUsername, getUserInfo, login
-}
+};

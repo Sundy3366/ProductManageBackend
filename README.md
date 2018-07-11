@@ -13,7 +13,7 @@
 ### 目录结构
 
 - config	------ 配置文件
-- middlewares	    ------ 中间件
+	 middlewares	    ------ 中间件
 - model     ------ 实体类
 - routes     ------ 控制层
 - service     ------ 服务层
@@ -24,7 +24,7 @@
 
 1.每个模块的实现顺序为：model层 --> service层 --> router层。
 
-2.单元测试：service层写脚本测试；router层使用postman测试。
+2.单元测试：service层编写脚本测试；router层使用postman测试。
 
 ### 配置文件的环境切换
 

@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 //注册路由
 app.use('/user', require('./routes/user'));
 app.use('/product', require('./routes/product'));
-
+app.use('/category',require('./routes/category'));
 
 
 

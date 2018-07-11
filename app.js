@@ -23,6 +23,10 @@ app.use(bodyParser.json());
 
 //注册路由
 app.use('/user', require('./routes/user'));
+app.use('/product', require('./routes/product'));
+
+
+
 
 //注册错误处理中间件
 app.use((err, req, res, next) => {

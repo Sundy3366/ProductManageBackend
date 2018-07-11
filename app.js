@@ -25,8 +25,7 @@ app.use(bodyParser.json());
 app.use('/user', require('./routes/user'));
 app.use('/product', require('./routes/product'));
 app.use('/category',require('./routes/category'));
-
-
+app.use('/order',require('./routes/order'));
 
 //注册错误处理中间件
 app.use((err, req, res, next) => {

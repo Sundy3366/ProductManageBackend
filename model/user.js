@@ -17,7 +17,7 @@ const schema = new mongoose.Schema({
     role: {
         type: Number,
         min: [0, "role不能小于0"],
-        default: 0 //0: 普通用户，10表示商家用户，100表示超级管理员
+        default: 0 //0表示商家用户，100表示超级管理员
     },
     created: {
         type: Date,

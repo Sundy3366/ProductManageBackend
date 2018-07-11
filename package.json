@@ -2,11 +2,12 @@
   "name": "ProductManageBackend",
   "version": "0.0.1",
   "dependencies": {
+    "big.js": "^5.1.2",
+    "body-parser": "latest",
     "express": "latest",
     "express-async-errors": "^3.0.0",
     "lxj-crypto": "0.0.1",
     "mongoose": "latest",
-    "morgan": "^1.9.0",
-    "body-parser": "latest"
+    "morgan": "^1.9.0"
   }
 }

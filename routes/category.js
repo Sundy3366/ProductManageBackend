@@ -33,4 +33,13 @@ router.get('/:id', async (req, res) => {
     res.success(category);
 });
 
+/**
+ * 查询分页信息
+ */
+router.get('/', async (req, res) => {
+    //查询参数使用req.query来取值
+    let categorys = await categoryService.getCategoryByPage(req.query.page);
+    res.success(categorys);
+});
+
 module.exports = router;

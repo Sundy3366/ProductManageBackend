@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 const schema = new mongoose.Schema({
-    name:{
-        type:String,
-        require:[true,"分类名称不能少"],
-        unique:true
+    name: {
+        type: String,
+        require: [true, "分类名称不能少"],
+        unique: true
     },
-    created:{
-        type:Date,
-        default:Date.now()
+    created: {
+        type: Date,
+        default: Date.now()
     }
 });
 

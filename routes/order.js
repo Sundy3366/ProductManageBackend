@@ -13,8 +13,8 @@ router.get("/:id", async (req, res) => {
  * 添加订单
  */
 router.post('/', async (req, res) => {
-    await orderService.addOrder(req.body);
-    res.success();
+    let o = await orderService.addOrder(req.body);
+    res.success(o);
 });
 
 module.exports = router;

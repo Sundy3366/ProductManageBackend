@@ -19,13 +19,17 @@ app.use(morgan('combined'));
 app.use(require('./middlewares/res_mid'));
 //注册body-parser中间件
 app.use(bodyParser.json());
+//注册token中间件
+app.use(require('./middlewares/token_mid'));
+//注册角色中间件
+app.use(require('./middlewares/permission_mid'));
 
 
 //注册路由
 app.use('/user', require('./routes/user'));
 app.use('/product', require('./routes/product'));
-app.use('/category',require('./routes/category'));
-app.use('/order',require('./routes/order'));
+app.use('/category', require('./routes/category'));
+app.use('/order', require('./routes/order'));
 
 //注册错误处理中间件
 app.use((err, req, res, next) => {

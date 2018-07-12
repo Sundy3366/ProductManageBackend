@@ -15,8 +15,7 @@ const schema = new mongoose.Schema({
         default: 0
     },
     category: {
-        // type: mongoose.Schema.Types.ObjectId,
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         require: [true, "商品分类不能少"]
     },
     description: String,

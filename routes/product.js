@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
 /**
  * 删除商品
  */
-router.delete('/:id',async (req, res) => {
+router.delete('/:id', async (req, res) => {
     await productService.deleteById(req.params.id);
     res.success();
 });
@@ -33,4 +33,11 @@ router.get('/:id', async (req, res) => {
     res.success(product);
 });
 
+/**
+ * 分页查询
+ */
+router.get('/', async (req, res) => {
+    let products = await productService.getProductsByPage(req.query.page);
+    res.success(products);
+});
 module.exports = router;
